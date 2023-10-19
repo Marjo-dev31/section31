@@ -1,0 +1,12 @@
+function postIsValide(title, content) {
+    return (
+    title &&
+    content &&
+    title.trim() !== '' &&
+    content.trim() !== ''
+    );
+};
+
+module.exports = {
+    postIsValide: postIsValide
+};
