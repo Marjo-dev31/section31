@@ -49,9 +49,15 @@ async function createPost (req, res) {
   };
 
 async function getSinglePost (req, res) {
-    const post = new Post(null, null, req.params.id);
+  let post;
+    try { 
+      post = new Post(null, null, req.params.id);
+    } catch(error) {
+      return res.render('404');
+    }; /*faire un try catch car express ne sait pas gerer les erreurs d une   async function*/
+
     await post.fetch();
-  
+
     if (!post.title || !post.content) {
       return res.render('404'); // 404.ejs is missing at this point - it will be added later!
     }
